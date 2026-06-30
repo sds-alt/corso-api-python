@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Il mio negozio web</title>
+</head>
+
+<body style="font-family: sans-serif; padding: 40px;">
+    <h1>Prodotti del Database</h1>
+    <button onclick="caricaDati()">Aggiorna Lista</button>
+    <ul id="lista" style="margin-top:20px;"></ul>
+    <script>
+        async function caricaDati() {
+            debugger;
+            let risposta = await fetch(
+                "https://turbo-space-zebra-4qjjpg7w5565hq5qj-8000.app.github.dev/prodotti");
+            let prodotti = await risposta.json();
+            //dobbiamo reperire l oggetto
+            let listaHtml = document.getElementById("lista");
+            listaHtml.innerHTML = "";
+            prodotti.forEach(p => {
+                let elemento = document.createElement("li");
+                let singoloElemento = `${p.nome} - ${p.prezzo} €` ;
+                elemento.textContent = singoloElemento;
+                listaHtml.appendChild(elemento);
+            });
+
+// 1. Chiediamo i dati alla nostra API funzionante sulla porta 8000
+// 2. Trasformiamo il testo JSON ricevuto in un array JavaScript
+// 3. Cicliamo i dati e creiamo i nodi HTML al volo
+}
+    </script>
+</body>
+
+</html>
