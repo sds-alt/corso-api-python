@@ -15,7 +15,6 @@
                 "--reload",
                 "--port",
                 "8001"
-
             ],
             "jinja": true
         }

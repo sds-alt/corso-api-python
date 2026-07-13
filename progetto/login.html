@@ -46,17 +46,16 @@
             let risposta = await fetch(`${API_URL}/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username: user, password: pass })
+                body: JSON.stringify({ username: user, password_hash: pass })
             });
 
             let dati = await risposta.json();
             
-            if(risposta.ok) {
-                alert("Ottimo! " + dati.status);
-                document.getElementById("regUser").value = "";
-                document.getElementById("regPass").value = "";
+            if (risposta.ok) {
+               alert("Registrazione completata con successo!");
+                window.location.href = "https://turbo-space-zebra-4qjjpg7w5565hq5qj-5503.app.github.dev/progetto/catalogo.html";
             } else {
-                alert("Errore: " + dati.detail);
+                alert("Errore: " + JSON.stringify(dati.detail));
             }
         }
 
@@ -70,17 +69,15 @@
             let risposta = await fetch(`${API_URL}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username: user, password: pass })
+                body: JSON.stringify({ username: user, password_hash: pass })
             });
 
             let dati = await risposta.json();
 
-            if(risposta.ok) {
-                // FASE 6: Salviamo la stringa anonima del token nel localStorage del browser
+            if (risposta.ok) {
                 localStorage.setItem("session_token", dati.token);
-                alert("Accesso autorizzato! Il token è stato memorizzato nel browser.");
-                document.getElementById("logUser").value = "";
-                document.getElementById("logPass").value = "";
+                alert("Login effettuato con successo!");
+                 window.location.href = "https://turbo-space-zebra-4qjjpg7w5565hq5qj-5503.app.github.dev/progetto/catalogo.html";
             } else {
                 alert("Accesso negato: " + dati.detail);
             }

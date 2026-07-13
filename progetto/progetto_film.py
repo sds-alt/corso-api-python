@@ -12,6 +12,7 @@ def lista_prodotti():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM film")
     risultato = cursor.fetchall()
+  
     conn.close()
     return risultato
 
@@ -25,6 +26,7 @@ def cerca_prodotto(keyword: str):
     (f"%{keyword}%",)
     )
     risultati = cursor.fetchall()
+    
     conn.close()
     return risultati
 
@@ -38,5 +40,6 @@ def dettaglio_film(id_film: int):
     (id_film,)
     )
     risultati = cursor.fetchone()
+   
     conn.close()
     return risultati

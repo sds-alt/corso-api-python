@@ -19,9 +19,13 @@ def  calcola_hash(password_chiaro: str):
 
 @router.post("/register")
 def registra_utente(dati: utente):
+    print("1")
     conn = sqlite3.connect("database.db")
+    print("2")
     cursor = conn.cursor()
+    print("3")
     cursor.execute("INSERT INTO utenti (username, password_hash) VALUES (?, ?)", (dati.username, dati.password_hash))
+    print("4")
     conn.commit()
     conn.close()
     return{"bravo"}

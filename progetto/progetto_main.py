@@ -20,6 +20,7 @@ app.add_middleware(
  allow_headers=["*"]
 )
 
+
 # 2. Agganciamo il router all'applicazione principale
 app.include_router(prodotti_router)
 @app.get("/")
@@ -27,15 +28,5 @@ def home():
  return {"info": "Server principale attivo"}
 
 app.include_router(utenti_router)
-@app.get("/")
-def home():
- return {"info": "Server principale attivo"}
 
 app.include_router(film_router)
-@app.get("/")
-def home():
- return {"info": "Server principale attivo"}
-
-
-
-
