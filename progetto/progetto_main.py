@@ -5,6 +5,7 @@ from .progetto_prodotti import router as prodotti_router
 from .progetto_utente import router as utenti_router
 from .progetto_film import router as film_router
 from fastapi.middleware.cors import CORSMiddleware
+from .progetto_playlist import router as playlist_router
 
 #inizializzo il DB
 dbinit()
@@ -30,3 +31,5 @@ def home():
 app.include_router(utenti_router)
 
 app.include_router(film_router)
+
+app.include_router(playlist_router)

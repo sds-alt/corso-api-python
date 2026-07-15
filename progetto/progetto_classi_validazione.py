@@ -12,4 +12,8 @@ class filmIN(BaseModel):
             trama: str 
             anno: int
             url_locandina: str
-            tmdb_id: str
+            tmdb_id: str    
+
+
+class PlaylistIn(BaseModel):
+           titolo_playlist: str

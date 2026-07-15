@@ -42,6 +42,17 @@ def dbinit():
             FOREIGN KEY (film_id) REFERENCES film (id)
         )
     """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS playlist_video (
+           id INTEGER PRIMARY KEY AUTOINCREMENT,
+           titolo_playlist TEXT NOT NULL,
+           utente_id INTEGER NOT NULL,
+           film_id INTEGER,
+           FOREIGN KEY (utente_id) REFERENCES utenti (id),
+           FOREIGN KEY (film_id) REFERENCES film (id)
+        )
+    """)
     conn.commit()
 
     cursor.execute("SELECT COUNT(*) FROM film")

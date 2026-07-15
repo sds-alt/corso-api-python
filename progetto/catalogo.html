@@ -35,7 +35,7 @@
 
     <script>
         const API_URL = "https://turbo-space-zebra-4qjjpg7w5565hq5qj-8000.app.github.dev/";
-
+         const token = localStorage.getItem("session_token");
         async function avviaRicerca() {
 
     let testo = document.getElementById("campoCerca").value;
@@ -59,7 +59,11 @@
             <img src="${p.url_locandina}">
             <p>${p.anno}</p>            
          <button class="btn-film" onclick="apriScheda('${p.id}')">
-            Azione
+             Azione
+         </button>
+
+         <button class="btn-film" onclick="aggiungiPlaylist('${p.id}')">
+            ➕ Playlist
          </button>
 
         `;
@@ -78,6 +82,37 @@
           }
           
         }
+
+        async function aggiungiPlaylist(idFilm) {
+
+           if (!token) {
+             alert("Devi effettuare il login.");
+             return;
+         }
+
+            let titoloPlaylist = prompt("Nome della playlist:");
+
+            if (!titoloPlaylist) {
+            return;
+          }
+
+           let risposta = await fetch(
+             API_URL +
+             "playlist/aggiungi-film?titolo_p=" +
+             encodeURIComponent(titoloPlaylist) +
+             "&id_f=" +
+              idFilm +
+              "&token=" +
+             token,
+           {
+            method: "POST"
+        }
+      );
+
+    let dati = await risposta.json();
+
+       alert(JSON.stringify(dati));
+}
       
     </script>
 </body>
